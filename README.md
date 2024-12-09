@@ -47,28 +47,32 @@ Before you begin, ensure you have the following installed:
 
 - **Example Response:**
 
-  `[`
-    `{`
-      `"id": 100034,`
+  ```json
+  
+  [ 
+  
+    {
+      "id": 100034,
 
-  ​    `"name": "Aditya Birla Sun Life Equity Advantage Fund -Regular - IDCW",`
+  ​    "name": "Aditya Birla Sun Life Equity Advantage Fund -Regular - IDCW",
 
-  ​    `"ticker": "FUND-100034",`
+  ​    "ticker": "FUND-100034",
 
-  ​    `"price": "141.68000"`  
+  ​    "price": "141.68000" 
 
-  `},`
-    `{`
-      `"id": 100035,`
+  },
+    {
+      "id": 100035,
 
-  ​    `"name": "Birla Sun Life Freedom Fund-Plan A (Dividend)",`
+  ​    "name": "Birla Sun Life Freedom Fund-Plan A (Dividend)",
 
-  ​    `"ticker": "FUND-100035",`
+  ​    "ticker": "FUND-100035",
 
-  ​    `"price": "14.55000"`  
+  ​    "price": "14.55000" 
 
-  `}`
-  `]`
+  }
+  ]
+  ```
 
 #### 2. Search Mutual Fund (GET)
 
@@ -83,14 +87,16 @@ Before you begin, ensure you have the following installed:
 
 - **Example Response:**
 
-  `[`
-      `{`
-          `"id": 100027,`
-          `"name": "Grindlays Super Saver Income Fund-GSSIF-Half Yearly Dividend",`
-          `"ticker": "FUND-100027",`
-          `"price": "10.72050"`
-      `}`
-  `]`
+  ```json
+  [
+      {
+          "id": 100027,
+          "name": "Grindlays Super Saver Income Fund-GSSIF-Half Yearly Dividend",
+          "ticker": "FUND-100027",
+          "price": "10.72050"
+      }
+  ]
+  ```
 
 #### 3. Add New Mutual Funds (POST)
 
@@ -100,26 +106,30 @@ Before you begin, ensure you have the following installed:
 
 - **Example Request Body:**
 
-  `{`
-    `"mutualFunds": [`
-      `{`
-        `"name": "Grindlays Super Saver Income Fund-GSSIF-Half Yearly Dividend"",`
-        `"ticker": "FUND-100027",`
-        `"price": 10.72050`
-      `},`
-      `{`
-        `"name": "HP Income Fund",`
-        `"ticker": "HIF",`
-        `"price": 102.50`
-      `}`
-    `]`
-  `}`
+  ```json
+  {
+    "mutualFunds": [
+      {
+        "name": "Grindlays Super Saver Income Fund-GSSIF-Half Yearly Dividend"",
+        "ticker": "FUND-100027",
+        "price": 10.72050
+      },
+      {
+        "name": "HP Income Fund",
+        "ticker": "HIF",
+        "price": 102.50
+      }
+    ]
+  }
+  ```
 
 - **Example Response:**
 
-  `{`
-    `"message": "Mutual funds added successfully"`
-  `}`
+  ```json
+  {
+    "message": "Mutual funds added successfully"
+  }
+  ```
 
 #### 4. Get Mutual Fund Details (GET)
 
@@ -129,12 +139,14 @@ Before you begin, ensure you have the following installed:
 
 - **Example Response:**
 
-  `{`
-      `"id": 1,`
-      `"name": "Lucki Fund",`
-      `"ticker": "LFG",`
-      `"price": "150.75000"`
-  `}`
+  ```json
+  {
+      "id": 1,
+      "name": "Lucki Fund",
+      "ticker": "LFG",
+      "price": "150.75000"
+  }
+  ```
 
 ### Baskets
 
@@ -146,26 +158,30 @@ Before you begin, ensure you have the following installed:
 
 - **Example Response:**
 
-  `[`
-      `{`
-          `"id": 7,`
-          `"name": "My New Basket",`
-          `"risk_category": "Low-Risk"`
-      `}`
-  `]`
+  ```json
+  [
+      {
+          "id": 7,
+          "name": "My New Basket",
+          "risk_category": "Low-Risk"
+      }
+  ]
+  ```
 
 #### 2. Create a New Basket (POST)
 
 - **Endpoint:** `/api/baskets/:riskCategory`
 - **Description:** Create a new basket with a name and risk category.
 - **Example Request Body:**
-- `{`
--  `"name": "My New Basket"`
-- `}`
+ ```json
+{
+  "name": "My New Basket"
+ }`
+```
 
 - **Example Response:**
 
-```bash
+```json
     {
     "id": 7,
     "name": "My New Basket",
@@ -180,18 +196,20 @@ Before you begin, ensure you have the following installed:
 
 - **Example Response:**
 
-  `[`
-      `{`
-          `"id": 100028,`
-          `"name": "Grindlays Super Saver Income Fund-GSSIF-Quaterly Dividend",`
-          `"weight": "30.00"`
-      `},`
-      `{`
-          `"id": 100029,`
-          `"name": "Grindlays Super Saver Income Fund-GSSIF-Growth",`
-          `"weight": "30.00"`
-      `}`
-  `]`
+  ```json
+  [
+      {
+          "id": 100028,
+          "name": "Grindlays Super Saver Income Fund-GSSIF-Quaterly Dividend",
+          "weight": "30.00"
+      },
+      {
+          "id": 100029,
+          "name": "Grindlays Super Saver Income Fund-GSSIF-Growth",
+          "weight": "30.00"
+      }
+  ]
+  ```
 
 #### 4. Add Mutual Fund to Basket (POST)
 
@@ -201,22 +219,26 @@ Before you begin, ensure you have the following installed:
 
 - **Example Request Body:**
 
-  `{`
+  ```json
+  {
 
-   `"mutual_fund_id": 100029,`
+   "mutual_fund_id": 100029,
 
-   `"weight": 30`
+   "weight": 30
 
-  `}`
+  }
+  ```
 
 - **Example Response:**
 
-  `{`
-      `"id": 3,`
-      `"baskets_id": 5,`
-      `"mutual_fund_id": 100029,`
-      `"weight": "30.00"`
-  `}`
+  ```json
+  {
+      "id": 3,
+      "baskets_id": 5,
+      "mutual_fund_id": 100029,
+      "weight": "30.00"
+  }
+  ```
 
 #### 5. Remove Mutual Fund from Basket (DELETE)
 
@@ -226,6 +248,8 @@ Before you begin, ensure you have the following installed:
 
 - **Example Response:**
 
-  `{`
-      `"message": "Mutual fund remove from basket"`
-  `}`
+  ```json
+  {
+      "message": "Mutual fund remove from basket"
+  }
+  ```
