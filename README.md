@@ -47,7 +47,7 @@ Before you begin, ensure you have the following installed:
 
 - **Example Response:**
 
-  ```json
+```json
   
   [ 
   
@@ -72,7 +72,7 @@ Before you begin, ensure you have the following installed:
 
   }
   ]
-  ```
+```
 
 #### 2. Search Mutual Fund (GET)
 
@@ -110,7 +110,7 @@ Before you begin, ensure you have the following installed:
   {
     "mutualFunds": [
       {
-        "name": "Grindlays Super Saver Income Fund-GSSIF-Half Yearly Dividend"",
+        "name": "Grindlays Super Saver Income Fund-GSSIF-Half Yearly Dividend",
         "ticker": "FUND-100027",
         "price": 10.72050
       },
