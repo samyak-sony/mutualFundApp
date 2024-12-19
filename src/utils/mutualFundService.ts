@@ -34,6 +34,14 @@ async function fetchMutualFundNav(schemeCode: number){
 async function populateMutualFundTable(limit:number = 60) {
     const client = await pool.connect();
     try{
+        const result = await client.query('SELECT COUNT(*) FROM mutual_fund');
+        const existingCount = parseInt(result.rows[0].count, 10);
+
+        if (existingCount > 0) {
+            console.log(`Mutual fund table already populated with ${existingCount} records. Skipping population.`);
+            return;
+        }
+        
         const mutualFunds = await fetchAllMutualFunds();
         const limitedFunds = mutualFunds.slice(0,limit);
             

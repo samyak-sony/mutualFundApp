@@ -7,8 +7,8 @@ dotenv.config();
 
 const start = async()=>{
     try{
-        // console.log('populating mutual fund databse');
-        // await populateMutualFundTable();
+        console.log('populating mutual fund databse');
+        await populateMutualFundTable();
 
         app.listen(3000,()=>{
             console.log('Listening on port 3000');
