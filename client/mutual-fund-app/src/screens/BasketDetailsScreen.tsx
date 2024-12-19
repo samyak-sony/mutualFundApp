@@ -9,6 +9,7 @@ import {
   Alert,
   TextInput,
   Keyboard,
+  ScrollView
 } from "react-native";
 import { RouteProp, useRoute } from "@react-navigation/native";
 import { useBasketContext } from "../contexts/BasketContext";
@@ -31,6 +32,7 @@ const BasketDetailsScreen: React.FC = () => {
   const [selectedMutualFund, setSelectedMutualFund] = useState<MutualFund | null>(null);
   const [weight, setWeight] = useState<string>("");
   const [isSearchFocused, setIsSearchFocused] = useState(false);
+  const [searchQuery, setSearchQuery] = useState<string>("");
 
   const { getDetails, addMutualFundBasket, removeMutualFundBasket } = useBasketContext();
   const { mutualFunds, loadMutualFunds, getMutualDetails } = useMutualFundContext();
@@ -99,12 +101,16 @@ const BasketDetailsScreen: React.FC = () => {
     const selectedFund = mutualFunds.find((fund) => typeof fund.id === "number" && fund.id === id);
     if (selectedFund) {
       setSelectedMutualFund(selectedFund as MutualFund);
+      setSearchQuery(selectedFund.name);
       setIsSearchFocused(false);
     } else {
       Alert.alert("Error", "Selected mutual fund does not have a valid ID.");
     }
   };
   const totalWeight = basketFunds.reduce((acc, fund) => acc + fund.weight, 0);
+  const filteredFunds = mutualFunds.filter((fund) =>
+    fund.name.toLowerCase().includes(searchQuery.toLowerCase())
+  );
   return (
     <View style={styles.container}>
       <Text style={styles.header}>{basketName} - Basket Details</Text>
@@ -137,16 +143,20 @@ const BasketDetailsScreen: React.FC = () => {
         <TextInput
           style={styles.searchBar}
           placeholder="Search mutual funds..."
+          value={searchQuery}
+          onChangeText={setSearchQuery}
           onFocus={() => setIsSearchFocused(true)}
           onBlur={() => setTimeout(() => setIsSearchFocused(false), 200)}
         />
         {isSearchFocused && (
+          <ScrollView style={styles.dropdownContainer}> 
           <SearchDropdown
-            options={mutualFunds
+            options={filteredFunds
               .filter((fund) => typeof fund.id === "number")
               .map((fund) => ({ id: fund.id as number, name: fund.name }))}
             onSelect={handleMutualFundSelect}
           />
+          </ScrollView>
         )}
         {selectedMutualFund && (
           <TextInput
@@ -237,6 +247,9 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     padding: 10,
     marginBottom: 10,
+  },
+  dropdownContainer: {
+    maxHeight: 200,  
   },
 });
 
